@@ -1,20 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '@/css/LoginPokemon.css';
 
 export default function Login() {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Redirige si ya hay token al Home
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulación de login (puedes conectar con backend después)
     if (user.trim() === '' || pass.trim() === '') {
       setError('¡Debes ingresar usuario y contraseña!');
     } else {
-      setError('');
-      // Aquí va la lógica real de login
-      alert(`Bienvenido, ${user}!`);
+      try {
+        const res = await axios.post('http://localhost:3001/api/auth/login', {
+          nombre_entrenador: user,
+          contrasena: pass
+        });
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('usuario', JSON.stringify(res.data.usuario));
+        setError('');
+        alert(`Bienvenido, ${res.data.usuario.nombre_entrenador}!`);
+        navigate('/');
+      } catch (err) {
+        setError(err.response?.data?.error || 'Usuario o contraseña incorrectos');
+      }
     }
   };
 

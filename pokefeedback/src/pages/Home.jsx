@@ -5,6 +5,9 @@ import PokemonCardTCG from '@/components/PokemonCardTCG';
 import Search from '@/components/Search';
 import '@/css/Home.css';
 import '@/css/PokemonCardTCG.css';
+import LogoutButton from '@/components/LogoutButton';
+
+
 
 // Diccionario español-inglés para tipos
 const tipoTraducido = {
@@ -97,6 +100,7 @@ export default function Home() {
 
   return (
     <div className="home-container">
+      <LogoutButton/>
       <h1 className="home-title">Pokémon List</h1>
       <Search onFilter={setFilters} />
       <div className="pokemon-grid">
@@ -114,6 +118,7 @@ export default function Home() {
             />
           );
         })}
+        
       </div>
       <div className="nav-buttons">
         <button

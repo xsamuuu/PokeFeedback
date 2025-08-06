@@ -1,0 +1,25 @@
+.pokemon-btn {
+  background-color: #ffcb05;
+  color: #2a2a72;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  margin-top: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.pokemon-btn:hover {
+  background-color: #3b4cca;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.pokemon-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

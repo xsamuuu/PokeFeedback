@@ -6,6 +6,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
+// Importa las rutas de autenticación
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
