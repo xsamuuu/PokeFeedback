@@ -1,5 +1,5 @@
 // src/components/PokemonDetails.jsx
-import '@/css/PokemonDetails.css';
+import '@/css/PokemonDetailsComponent.css';
 
 export default function PokemonDetails({ data }) {
   return (
