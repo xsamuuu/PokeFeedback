@@ -1,0 +1,129 @@
+.tcg-card {
+  width: 240px;
+  height: 340px;
+  margin: 1rem;
+  border-radius: 1.2rem;
+  background: #fff;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  border: 4px solid currentColor;
+}
+
+.tcg-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.tcg-card-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #ffffff, #f4f4f4);
+  position: relative;
+  border-radius: 0.8rem;
+}
+
+.tcg-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #222;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.tcg-hp {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: crimson;
+}
+
+.tcg-card-image {
+  flex-grow: 1;
+  background: radial-gradient(circle at center, #eee, #ccc);
+  border: 2px inset #aaa;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tcg-img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.3));
+}
+
+.tcg-info {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Rareza opcional (puedes usar ⭐, ★, ✦ si lo deseas) */
+.tcg-rarity {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.25rem;
+}
+
+/* Bordes dinámicos por tipo */
+.tcg-border-fire     { color: #F08030; background-color: #FFF4EC; }
+.tcg-border-water    { color: #6890F0; background-color: #EEF5FF; }
+.tcg-border-grass    { color: #78C850; background-color: #F2FFF1; }
+.tcg-border-electric { color: #F8D030; background-color: #FFFCE9; }
+.tcg-border-psychic  { color: #F85888; background-color: #FFF0F5; }
+.tcg-border-ice      { color: #98D8D8; background-color: #F0FAFA; }
+.tcg-border-fighting { color: #C03028; background-color: #FFEFEF; }
+.tcg-border-dark     { color: #705848; background-color: #F2F2F2; }
+.tcg-border-ghost    { color: #705898; background-color: #F7F4FF; }
+.tcg-border-steel    { color: #B8B8D0; background-color: #F6F6FA; }
+.tcg-border-rock     { color: #B8A038; background-color: #FFFAEC; }
+.tcg-border-ground   { color: #E0C068; background-color: #FFFBEF; }
+.tcg-border-dragon   { color: #7038F8; background-color: #F2F0FF; }
+.tcg-border-fairy    { color: #EE99AC; background-color: #FFF2F5; }
+.tcg-border-normal   { color: #A8A878; background-color: #F9F9F9; }
+.tcg-border-poison   { color: #A040A0; background-color: #FAF0FB; }
+.tcg-border-bug      { color: #A8B820; background-color: #F8FFF2; }
+.tcg-border-flying   { color: #A890F0; background-color: #F3F0FF; }
+
+/* Efecto de brillo animado */
+.tcg-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  opacity: 0.25;
+  pointer-events: none;
+  animation: shine 3s infinite linear;
+  border-radius: inherit;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(15deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(15deg);
+  }
+}

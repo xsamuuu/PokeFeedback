@@ -1,0 +1,128 @@
+:root {
+  --fire: #F08030;
+  --water: #6890F0;
+  --grass: #78C850;
+  --electric: #F8D030;
+  --psychic: #F85888;
+  --ice: #98D8D8;
+  --fighting: #C03028;
+  --dark: #705848;
+  --ghost: #705898;
+  --steel: #B8B8D0;
+  --rock: #B8A038;
+  --ground: #E0C068;
+  --dragon: #7038F8;
+  --fairy: #EE99AC;
+  --normal: #A8A878;
+  --poison: #A040A0;
+  --bug: #A8B820;
+  --flying: #A890F0;
+}
+
+.tcg-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 140px;
+  height: 200px;
+  margin: 0.8rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s;
+}
+
+.tcg-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+.tcg-card-inner {
+  gap: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  height: 92%;
+  border-radius: 0.75rem;
+  border: 3px solid currentColor;
+  padding: 0.5rem;
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.tcg-card-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #333;
+}
+
+.tcg-card-type {
+  text-transform: uppercase;
+}
+
+.tcg-card-id {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+h1{
+  color: #cccccc;
+}
+
+
+
+.tcg-card-image {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 0.4rem 0;
+}
+
+.tcg-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.tcg-info {
+  text-align: center;
+}
+
+
+
+/* Tipos de Pokémon */
+.tcg-border-fire     { color: var(--fire);     background: radial-gradient(circle, #fff, var(--fire)20%); }
+.tcg-border-water    { color: var(--water);    background: radial-gradient(circle, #fff, var(--water)20%); }
+.tcg-border-grass    { color: var(--grass);    background: radial-gradient(circle, #fff, var(--grass)20%); }
+.tcg-border-electric { color: var(--electric); background: radial-gradient(circle, #fff, var(--electric)20%); }
+.tcg-border-psychic  { color: var(--psychic);  background: radial-gradient(circle, #fff, var(--psychic)20%); }
+.tcg-border-ice      { color: var(--ice);      background: radial-gradient(circle, #fff, var(--ice)20%); }
+.tcg-border-fighting { color: var(--fighting); background: radial-gradient(circle, #fff, var(--fighting)20%); }
+.tcg-border-dark     { color: var(--dark);     background: radial-gradient(circle, #fff, var(--dark)20%); }
+.tcg-border-ghost    { color: var(--ghost);    background: radial-gradient(circle, #fff, var(--ghost)20%); }
+.tcg-border-steel    { color: var(--steel);    background: radial-gradient(circle, #fff, var(--steel)20%); }
+.tcg-border-rock     { color: var(--rock);     background: radial-gradient(circle, #fff, var(--rock)20%); }
+.tcg-border-ground   { color: var(--ground);   background: radial-gradient(circle, #fff, var(--ground)20%); }
+.tcg-border-dragon   { color: var(--dragon);   background: radial-gradient(circle, #fff, var(--dragon)20%); }
+.tcg-border-fairy    { color: var(--fairy);    background: radial-gradient(circle, #fff, var(--fairy)20%); }
+.tcg-border-normal   { color: var(--normal);   background: radial-gradient(circle, #fff, var(--normal)20%); }
+.tcg-border-poison   { color: var(--poison);   background: radial-gradient(circle, #fff, var(--poison)20%); }
+.tcg-border-bug      { color: var(--bug);      background: radial-gradient(circle, #fff, var(--bug)20%); }
+.tcg-border-flying   { color: var(--flying);   background: radial-gradient(circle, #fff, var(--flying)20%); }
+
