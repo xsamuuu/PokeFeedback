@@ -1,3 +1,4 @@
+/* CONTENEDOR LATERAL */
 .feedback-horizontal-container {
   position: fixed;
   top: 64px;
@@ -14,22 +15,23 @@
   width: 0;
   height: 100%;
   border-radius: 16px 0 0 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
   overflow-x: hidden;
   overflow-y: auto;
-  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  /* Hide content when collapsed */
   pointer-events: none;
   opacity: 0;
 }
+
 .feedback-horizontal-panel.expanded {
-  width: 340px;
+  width: 480px; /* ANCHO AUMENTADO */
   pointer-events: auto;
   opacity: 1;
 }
 
+/* CABECERA */
 .feedback-header-horizontal {
   display: flex;
   justify-content: space-between;
@@ -38,11 +40,13 @@
   background: #181818;
   border-bottom: 1px solid #333;
 }
+
 .feedback-title {
   font-size: 1.1rem;
   font-weight: bold;
   letter-spacing: 0.5px;
 }
+
 .feedback-toggle-btn-horizontal {
   background: none;
   color: #fff;
@@ -53,6 +57,7 @@
   padding: 0.2rem 0.5rem;
 }
 
+/* CUERPO */
 .feedback-body-horizontal {
   padding: 1rem;
   flex: 1;
@@ -61,15 +66,21 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0;}
-  to { opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
+/* INPUT */
 .feedback-input {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
+
 .feedback-input input {
   flex: 1;
   padding: 0.6rem;
@@ -79,6 +90,7 @@
   color: #fff;
   font-size: 1rem;
 }
+
 .feedback-input button {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
@@ -89,10 +101,12 @@
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .feedback-input button:hover {
   background: #d93030;
 }
 
+/* LISTA DE COMENTARIOS */
 .feedback-list {
   display: flex;
   flex-direction: column;
@@ -100,32 +114,54 @@
 }
 
 .feedback-comment {
-  background: #252525;
+  background-color: #1e1e1e;
   border-radius: 8px;
-  padding: 0.7rem 1rem;
+  padding: 10px;
+  color: white;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feedback-user {
+  font-weight: bold;
+  color: #facc15; /* dorado */
+}
+
+.feedback-text {
+  white-space: pre-line;
+  color: #e5e5e5;
+  font-size: 0.95rem;
+}
+
+.feedback-actions {
+  display: flex;
+  gap: 14px;
   align-items: center;
 }
+
 .feedback-actions button {
-  margin-left: 0.6rem;
   background: none;
   border: none;
-  color: #ff4646;
-  font-size: 1.2rem;
+  color: #f87171;
+  font-size: 1rem;
   cursor: pointer;
   font-weight: bold;
-  transition: color 0.2s;
+  transition: transform 0.2s ease;
 }
+
 .feedback-actions button:hover {
-  color: #fff;
+  transform: scale(1.1);
+  color: #ffffff;
 }
+
+/* ESTADO VACÍO */
 .no-feedback {
   color: #ccc;
   font-style: italic;
 }
 
-/* Botón flotante para mostrar comentarios */
+/* BOTÓN FLOTANTE */
 .feedback-float-btn {
   position: absolute;
   top: 32px;
@@ -137,7 +173,7 @@
   width: 54px;
   height: 54px;
   font-size: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   z-index: 99;
   display: flex;
@@ -145,6 +181,7 @@
   justify-content: center;
   transition: background 0.18s;
 }
+
 .feedback-float-btn:hover {
   background: #d93030;
 }

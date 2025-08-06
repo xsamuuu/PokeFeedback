@@ -7,7 +7,7 @@ export default function FeedbackSection({ pokemonId }) {
   const [input, setInput] = useState('');
   const [expanded, setExpanded] = useState(false);
 
-  const usuarioId = localStorage.getItem('usuario'); // Debe ser el ID, no el nombre
+  const usuarioId = localStorage.getItem('usuario');
 
   const fetchComments = async () => {
     try {
@@ -19,20 +19,21 @@ export default function FeedbackSection({ pokemonId }) {
   };
 
   const handleAddComment = async () => {
-    if (input.trim() === '' || !usuarioId) return;
+    if (input.trim() === '' || !usuarioId) {
+      console.warn('No se puede comentar: entrada vacía o usuario no definido');
+      return;
+    }
 
     try {
+      console.log('Enviando comentario:', { pokemonId, input, usuarioId });
+
       const res = await axios.post(
         `http://localhost:3001/api/feedback/${pokemonId}`,
         { text: input },
-        {
-          headers: {
-            usuario: usuarioId, // Enviamos el id del usuario como header
-          },
-        }
+        { headers: { usuario: usuarioId } }
       );
 
-      setComments(prev => [...prev, res.data]);
+      setComments(prev => [res.data, ...prev]);
       setInput('');
     } catch (err) {
       console.error('Error al agregar comentario', err);
@@ -43,12 +44,17 @@ export default function FeedbackSection({ pokemonId }) {
     try {
       const res = await axios.post(
         `http://localhost:3001/api/feedback/${pokemonId}/react/${commentId}`,
-        { type }
+        { type },
+        { headers: { usuario: usuarioId } }
       );
 
-      setComments(comments.map(c =>
-        c.id === commentId ? res.data : c
-      ));
+      setComments(prev =>
+        prev.map(c =>
+          c.id === commentId
+            ? { ...c, likes: res.data.likes, dislikes: res.data.dislikes }
+            : c
+        )
+      );
     } catch (err) {
       console.error('Error al reaccionar al comentario', err);
     }
@@ -70,30 +76,35 @@ export default function FeedbackSection({ pokemonId }) {
             {expanded ? '⇦ Ocultar' : '⇨ Mostrar'}
           </button>
         </div>
+
         <div className="feedback-body-horizontal">
-          <div className="feedback-input">
-            <input
-              type="text"
-              value={input}
-              placeholder="Agrega tu comentario..."
-              onChange={e => setInput(e.target.value)}
-              maxLength={120}
-            />
-            <button onClick={handleAddComment}>Comentar</button>
-          </div>
+          {usuarioId && (
+            <div className="feedback-input">
+              <input
+                type="text"
+                value={input}
+                placeholder="Agrega tu comentario..."
+                onChange={e => setInput(e.target.value)}
+                maxLength={120}
+              />
+              <button onClick={handleAddComment}>Comentar</button>
+            </div>
+          )}
+
           <div className="feedback-list">
             {comments.length === 0 && (
-              <div className="no-feedback">Sé el primero en comentar!</div>
+              <div className="no-feedback">¡Sé el primero en comentar!</div>
             )}
             {comments.map(comment => (
               <div key={comment.id} className="feedback-comment">
-                <span>{comment.text}</span>
+                <div className="feedback-user">@{comment.nombre_entrenador}</div>
+                <div className="feedback-text">{comment.comentario}</div>
                 <div className="feedback-actions">
                   <button onClick={() => handleReaction(comment.id, 'likes')}>
-                    👍 {comment.likes}
+                    👍 {comment.likes > 0 && comment.likes}
                   </button>
                   <button onClick={() => handleReaction(comment.id, 'dislikes')}>
-                    👎 {comment.dislikes}
+                    👎 {comment.dislikes > 0 && comment.dislikes}
                   </button>
                 </div>
               </div>
