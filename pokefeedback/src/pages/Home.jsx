@@ -100,7 +100,6 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <LogoutButton/>
       <h1 className="home-title">Pokémon List</h1>
       <Search onFilter={setFilters} />
       <div className="pokemon-grid">
