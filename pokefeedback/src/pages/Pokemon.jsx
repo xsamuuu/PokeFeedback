@@ -32,9 +32,6 @@ export default function Pokemon() {
     );
   }
 
-// src/pages/Pokemon.jsx
-
-// ...resto de tu código...
 
   return (
     <div className={`pokemon-page bg-${primaryType}`}>

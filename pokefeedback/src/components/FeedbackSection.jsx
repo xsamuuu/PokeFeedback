@@ -1,38 +1,66 @@
-// src/components/FeedbackSection.jsx
-import { useState } from 'react';
-import '@/css/FeedbackSection.css'; 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import '@/css/FeedbackSection.css';
+
 export default function FeedbackSection({ pokemonId }) {
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState('');
   const [expanded, setExpanded] = useState(false);
 
-  const handleAddComment = () => {
-    if (input.trim() === '') return;
-    setComments([
-      ...comments,
-      {
-        id: Date.now(),
-        text: input,
-        likes: 0,
-        dislikes: 0
-      }
-    ]);
-    setInput('');
+  const usuarioId = localStorage.getItem('usuario'); // Debe ser el ID, no el nombre
+
+  const fetchComments = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3001/api/feedback/${pokemonId}`);
+      setComments(res.data);
+    } catch (err) {
+      console.error('Error al obtener comentarios', err);
+    }
   };
 
-  const handleReaction = (commentId, type) => {
-    setComments(comments.map(c =>
-      c.id === commentId
-        ? { ...c, [type]: c[type] + 1 }
-        : c
-    ));
+  const handleAddComment = async () => {
+    if (input.trim() === '' || !usuarioId) return;
+
+    try {
+      const res = await axios.post(
+        `http://localhost:3001/api/feedback/${pokemonId}`,
+        { text: input },
+        {
+          headers: {
+            usuario: usuarioId, // Enviamos el id del usuario como header
+          },
+        }
+      );
+
+      setComments(prev => [...prev, res.data]);
+      setInput('');
+    } catch (err) {
+      console.error('Error al agregar comentario', err);
+    }
   };
+
+  const handleReaction = async (commentId, type) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3001/api/feedback/${pokemonId}/react/${commentId}`,
+        { type }
+      );
+
+      setComments(comments.map(c =>
+        c.id === commentId ? res.data : c
+      ));
+    } catch (err) {
+      console.error('Error al reaccionar al comentario', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, [pokemonId]);
 
   return (
-    <div className={`feedback-horizontal-container`}>
-      <div
-        className={`feedback-horizontal-panel ${expanded ? 'expanded' : ''}`}
-      >
+    <div className="feedback-horizontal-container">
+      <div className={`feedback-horizontal-panel ${expanded ? 'expanded' : ''}`}>
         <div className="feedback-header-horizontal">
           <span className="feedback-title">Comentarios</span>
           <button
@@ -73,12 +101,9 @@ export default function FeedbackSection({ pokemonId }) {
           </div>
         </div>
       </div>
-      {/* Botón flotante para mostrar la sección cuando está oculta */}
+
       {!expanded && (
-        <button
-          className="feedback-float-btn"
-          onClick={() => setExpanded(true)}
-        >
+        <button className="feedback-float-btn" onClick={() => setExpanded(true)}>
           💬
         </button>
       )}

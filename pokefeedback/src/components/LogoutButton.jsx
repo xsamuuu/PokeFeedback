@@ -1,3 +1,4 @@
+// src/components/LogoutButton.jsx
 import { useNavigate } from 'react-router-dom';
 import '@/css/LogoutButton.css';
 

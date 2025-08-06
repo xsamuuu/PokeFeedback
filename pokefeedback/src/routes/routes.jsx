@@ -2,8 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Pokemon from '@/pages/Pokemon';
-import Login from '@/pages/Login';
-import Register from '@/pages/Register'
+import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register'
 
 export default function AppRoutes() {
   return (

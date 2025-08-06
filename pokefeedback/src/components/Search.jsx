@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '@/css/search.css';
-import '@/components/LogoutButton'
 import LogoutButton from './LogoutButton';
+
 const tiposPokemon = [
   'normal', 'fuego', 'agua', 'planta', 'eléctrico', 'hielo', 'lucha', 'veneno',
   'tierra', 'volador', 'psíquico', 'bicho', 'roca', 'fantasma', 'siniestro',
@@ -18,67 +19,83 @@ export default function Search({ onFilter }) {
   const [id, setId] = useState('');
   const [tipo, setTipo] = useState('');
   const [rareza, setRareza] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Aquí validas si hay un token en localStorage
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // true si hay token
+  }, []);
 
   const handleSearch = () => {
-    onFilter({
-      nombre,
-      id,
-      tipo,
-      rareza
-    });
+    onFilter({ nombre, id, tipo, rareza });
   };
 
-return (
-  <div className="search-container">
-    <div className="search-fields" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-      <input
-        type="text"
-        placeholder="Nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="ID"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        min="1"
-      />
-      <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-        <option value="">Tipo</option>
-        {tiposPokemon.map((tipo) => (
-          <option key={tipo} value={tipo}>
-            {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
-          </option>
-        ))}
-      </select>
-      <select value={rareza} onChange={(e) => setRareza(e.target.value)}>
-        <option value="">Rareza</option>
-        {rarezas.map((r) => (
-          <option key={r.value} value={r.value}>
-            {r.label}
-          </option>
-        ))}
-      </select>
+  const handleLoginRedirect = () => {
+    navigate('/login'); // redirige a /login
+  };
 
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: '0.5rem 1rem',
-          borderRadius: '8px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        Buscar
-      </button>
-    </div>
+  return (
+    <div className="search-container">
+      <div className="search-fields" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <input
+          type="text"
+          placeholder="Nombre"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="ID"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          min="1"
+        />
+        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+          <option value="">Tipo</option>
+          {tiposPokemon.map((tipo) => (
+            <option key={tipo} value={tipo}>
+              {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
+            </option>
+          ))}
+        </select>
+        <select value={rareza} onChange={(e) => setRareza(e.target.value)}>
+          <option value="">Rareza</option>
+          {rarezas.map((r) => (
+            <option key={r.value} value={r.value}>
+              {r.label}
+            </option>
+          ))}
+        </select>
 
-    <div style={{ marginLeft: 'auto' }}>
-      <LogoutButton />
+        <button
+          onClick={handleSearch}
+          style={{
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Buscar
+        </button>
+      </div>
+
+      <div style={{ marginLeft: 'auto' }}>
+        {isLoggedIn ? (
+          <LogoutButton />
+        ) : (
+          <button
+            onClick={handleLoginRedirect}
+            className="pokemon-btn"
+          >
+            Iniciar sesión
+          </button>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 }
