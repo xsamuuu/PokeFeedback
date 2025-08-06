@@ -1,0 +1,90 @@
+.pokemon-login-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3b4cca 80%, #ffde00 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon-login-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(59,76,202,0.2);
+  padding: 2.5rem 2rem;
+  min-width: 340px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #ffde00;
+}
+
+.pokemon-login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.pokeball-img {
+  width: 72px;
+  margin-bottom: 0.7rem;
+  filter: drop-shadow(0 2px 8px #3b4cca88);
+}
+
+.pokemon-login-title {
+  font-family: 'Pokemon Solid', 'Arial Black', Arial, sans-serif;
+  font-size: 2.1rem;
+  color: #3b4cca;
+  text-shadow: 2px 2px 0 #ffde00;
+  letter-spacing: 2px;
+}
+
+.pokemon-login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.pokemon-input {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.1rem;
+  border: 2px solid #3b4cca;
+  border-radius: 1rem;
+  background: #f7f7ff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.pokemon-input:focus {
+  border-color: #ffde00;
+}
+
+.pokemon-error {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pokemon-btn {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.85rem 2rem;
+  border-radius: 2rem;
+  background: linear-gradient(90deg,#ffde00 80%,#e3350d 100%);
+  color: #3b4cca;
+  border: 2px solid #3b4cca;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #3b4cca22;
+  transition: background 0.18s, color 0.18s;
+}
+
+.pokemon-btn:hover {
+  background: linear-gradient(90deg,#3b4cca 80%,#ffde00 100%);
+  color: #fff;
+}
