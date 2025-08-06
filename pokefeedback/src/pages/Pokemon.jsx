@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getPokemonById } from '@/api/getPokemonById';
 import PokemonDetails from '@/components/PokemonDetails';
 import '@/css/PokemonDetails.css'; // Asegúrate de importar este CSS
+import FeedbackSection from '@/components/FeedbackSection'; // Importa el nuevo componente
 
 
 export default function Pokemon() {
@@ -31,13 +32,17 @@ export default function Pokemon() {
     );
   }
 
+// src/pages/Pokemon.jsx
+
+// ...resto de tu código...
+
   return (
     <div className={`pokemon-page bg-${primaryType}`}>
       <div className={`pokemon-card-container border-${primaryType}`}>
-       <PokemonDetails data={pokemon} /> 
+        <PokemonDetails data={pokemon} />
       </div>
-      
+      {/* Espacio para feedback tipo reels */}
+      <FeedbackSection pokemonId={id} />
     </div>
-    
   );
 }

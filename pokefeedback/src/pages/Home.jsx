@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPokemonList } from '@/api/getPokemonList';
 import { getPokemonCard } from '@/api/getPokemonCard';
 import PokemonCardTCG from '@/components/PokemonCardTCG';
+import Search from '@/components/Search';
 import '@/css/Home.css';
 import '@/css/PokemonCardTCG.css';
 
@@ -9,6 +10,7 @@ export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [cards, setCards] = useState({});
   const [page, setPage] = useState(0);
+  const [filters, setFilters] = useState({ nombre: '', id: '', tipo: '', rareza: '' });
   const limit = 20;
 
   const allowedNames = [
@@ -23,29 +25,43 @@ export default function Home() {
       setPokemons(list);
 
       const cardData = {};
-
-      const promises = list.map(async (pokemon) => {
+      const fetchPromises = list.map(async (pokemon) => {
         const name = pokemon.name.toLowerCase();
-
         if (allowedNames.includes(name)) {
-          const cardImage = await getPokemonCard(name);
-          if (cardImage) cardData[name] = cardImage;
+          const image = await getPokemonCard(name);
+          if (image) cardData[name] = image;
         }
       });
 
-      await Promise.all(promises);
+      await Promise.all(fetchPromises);
       setCards({ ...cardData });
     }
 
     fetchData();
   }, [page]);
 
+  // Filtrado básico por nombre e ID
+  const filteredPokemons = pokemons.filter(pokemon => {
+    const name = pokemon.name.toLowerCase();
+    const id = pokemon.url.split('/').filter(Boolean).pop();
+
+    const matchesName = filters.nombre === '' || name.includes(filters.nombre.toLowerCase());
+    const matchesId = filters.id === '' || id === filters.id;
+
+    // Nota: tipo y rareza podrían usarse si se tienen los datos de cada Pokémon.
+    return matchesName && matchesId;
+  });
+
   return (
     <div className="home-container">
       <h1 className="home-title">Pokémon List</h1>
 
+      {/* Buscador */}
+      <Search onFilter={setFilters} />
+
+      {/* Lista de Pokémon */}
       <div className="pokemon-grid">
-        {pokemons.map((pokemon) => {
+        {filteredPokemons.map((pokemon) => {
           const id = pokemon.url.split('/').filter(Boolean).pop();
           const name = pokemon.name.toLowerCase();
           const cardImage = cards[name];
@@ -62,6 +78,7 @@ export default function Home() {
         })}
       </div>
 
+      {/* Navegación */}
       <div className="nav-buttons">
         <button
           onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
