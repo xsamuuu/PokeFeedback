@@ -73,11 +73,13 @@ export default function Search({ onFilter }) {
           onClick={handleSearch}
           style={{
             padding: '0.5rem 1rem',
-            borderRadius: '8px',
-            backgroundColor: '#007bff',
+            borderRadius: '10px',
+            backgroundColor: '#000000',
             color: 'white',
             border: 'none',
             cursor: 'pointer',
+            width: '100px',
+            height: '45px',
           }}
         >
           Buscar

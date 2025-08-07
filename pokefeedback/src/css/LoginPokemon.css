@@ -1,13 +1,13 @@
 .pokemon-login-bg {
   min-height: 100vh;
-  background: linear-gradient(135deg, #3b4cca 80%, #ffde00 100%);
+  background: linear-gradient(135deg, #1b1b1b 80%, #ffde00 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .pokemon-login-card {
-  background: #fff;
+  background: #353232;
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(59,76,202,0.2);
   padding: 2.5rem 2rem;
@@ -76,15 +76,18 @@
   font-weight: bold;
   padding: 0.85rem 2rem;
   border-radius: 2rem;
-  background: linear-gradient(90deg,#ffde00 80%,#e3350d 100%);
-  color: #3b4cca;
-  border: 2px solid #3b4cca;
+  /*se usa el margin left con flex start en el search container*/
+  margin-left: -15rem;
+  margin-top: 0rem;
+  background: linear-gradient(90deg,#0A0908 80%,#F2F4F3 100%);
+  color: #F2F4F3;
+  border: 2px solid #000000;
   cursor: pointer;
-  box-shadow: 0 2px 12px #3b4cca22;
+  box-shadow: 0 2px 12px #0A0908;
   transition: background 0.18s, color 0.18s;
 }
 
 .pokemon-btn:hover {
-  background: linear-gradient(90deg,#3b4cca 80%,#ffde00 100%);
-  color: #fff;
+  background: linear-gradient(90deg,#F2F4F3 80%,#0A0908 100%);
+  color: #000000;
 }

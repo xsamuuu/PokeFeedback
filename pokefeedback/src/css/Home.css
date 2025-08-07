@@ -35,6 +35,23 @@ body {
   margin-top: 1.5rem;
 }
 
+/* Estilo base para los botones */
+#anterior {
+  position: fixed;
+  top: 50vh; /* 50% de la altura de la ventana */
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
+#siguiente {
+  position: fixed;
+  top: 50vh;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
 .nav-buttons button {
   padding: 0.5rem 1rem;
   background-color: #e2e8f0;
@@ -43,6 +60,7 @@ body {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
 
 
 

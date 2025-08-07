@@ -100,7 +100,8 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <h1 className="home-title">Pokémon List</h1>
+      <h1 className="home-title">Poke feedback</h1>
+      <img className='ultraball' src="./src/components/imgs/ultra-ball.png" alt="ultraball logo"  />
       <Search onFilter={setFilters} />
       <div className="pokemon-grid">
         {paginatedPokemons.map((pokemon) => {
@@ -120,13 +121,13 @@ export default function Home() {
         
       </div>
       <div className="nav-buttons">
-        <button
+        <button className='back-btn'
           onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
           disabled={page === 0}
         >
           Anterior
         </button>
-        <button
+        <button className='next-btn'
           onClick={() => setPage((prev) => prev + 1)}
           disabled={(page + 1) * limit >= filteredPokemons.length}
         >
