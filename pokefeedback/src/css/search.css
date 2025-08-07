@@ -1,22 +1,62 @@
 .search-container {
   display: flex;
+  justify-content: flex-start;
   gap: 1rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
-  background: #f6f7fa;
+  background: #646464;
   padding: 1.5rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   align-items: center;
 }
+/*div de la barra de busqueda, se añade un gradiente, se hace flex*/
+div.search-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 20px;
+  background: linear-gradient(to right, #35251b, #cab709);
+}
+/*Bg de la página*/
+div.home-container{
+  background-color: #1f1f1f;
+}
+
+
+h1{
+  color: #F2F4F3;
+  gap: 10px;   
+  filter: drop-shadow(1px 5px 8px #ad9401);
+}
+
+.ultraball {
+  width: 120px;    
+  height: auto;   
+  display: flex;  
+  margin: 0 auto;  
+  position: relative;
+  gap: 10px;
+  filter: drop-shadow(0px 0px 10px #ad9401);
+}
+
+/*Se centran en la navbar*/
+.search-field{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 .search-container input,
 .search-container select {
   font-size: 1rem;
   padding: 0.7rem 1rem;
-  border: 1px solid #d3d6da;
+  border: 1px solid #000000;
   border-radius: 0.7rem;
-  background: #fff;
+  background: #ffffff;
   transition: border-color 0.2s;
   outline: none;
   min-width: 140px;
@@ -25,6 +65,7 @@
 .search-container input:focus,
 .search-container select:focus {
   border-color: #63a4ff;
+  
 }
 
 .search-container select {

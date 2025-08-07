@@ -12,7 +12,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
-
+.pokemon-btn2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.85rem 2rem;
+  border-radius: 2rem;
+  margin-left: -15rem;
+  margin-top: 0rem;
+  background: linear-gradient(90deg,#0A0908 80%,#F2F4F3 100%);
+  color: #F2F4F3;
+  border: 2px solid #000000;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #0A0908;
+  transition: background 0.18s, color 0.18s;
+}
 .pokemon-btn:hover {
   background-color: #3b4cca;
   color: #ffffff;

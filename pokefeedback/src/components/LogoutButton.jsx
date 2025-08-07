@@ -12,7 +12,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className="pokemon-btn">
+    <button onClick={handleLogout} className="pokemon-btn2">
       Cerrar sesión
     </button>
   );

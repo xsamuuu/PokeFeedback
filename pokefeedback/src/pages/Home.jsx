@@ -86,6 +86,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <h1 className="home-title">Pokémon List</h1>
+      <img className="ultraball" src="/ultra-ball.png" alt="ultraball logo" />
       <Search onFilter={setFilters} />
       <div className="pokemon-grid">
         {paginatedPokemons.map((pokemon) => {
