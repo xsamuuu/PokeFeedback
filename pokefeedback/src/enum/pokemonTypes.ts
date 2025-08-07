@@ -1,0 +1,21 @@
+// src/enum/pokemonTypes.ts
+export enum PokemonType {
+  NORMAL = 'normal',
+  FUEGO = 'fire',
+  AGUA = 'water',
+  PLANTA = 'grass',
+  ELECTRICO = 'electric',
+  HIELO = 'ice',
+  LUCHA = 'fighting',
+  VENENO = 'poison',
+  TIERRA = 'ground',
+  VOLADOR = 'flying',
+  PSIQUICO = 'psychic',
+  BICHO = 'bug',
+  ROCA = 'rock',
+  FANTASMA = 'ghost',
+  SINIESTRO = 'dark',
+  DRAGON = 'dragon',
+  ACERO = 'steel',
+  HADA = 'fairy',
+}

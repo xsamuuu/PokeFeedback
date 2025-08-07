@@ -1,35 +1,20 @@
 import { useEffect, useState } from 'react';
 import { getPokemonList } from '@/api/getPokemonList';
 import { getPokemonCard } from '@/api/getPokemonCard';
+import { PokemonType } from '@/enum/pokemonTypes.ts';
 import PokemonCardTCG from '@/components/PokemonCardTCG';
+
 import Search from '@/components/Search';
 import '@/css/Home.css';
 import '@/css/PokemonCardTCG.css';
-import LogoutButton from '@/components/LogoutButton';
 
 
 
 // Diccionario español-inglés para tipos
-const tipoTraducido = {
-  normal: "normal",
-  fuego: "fire",
-  agua: "water",
-  planta: "grass",
-  eléctrico: "electric",
-  hielo: "ice",
-  lucha: "fighting",
-  veneno: "poison",
-  tierra: "ground",
-  volador: "flying",
-  psíquico: "psychic",
-  bicho: "bug",
-  roca: "rock",
-  fantasma: "ghost",
-  siniestro: "dark",
-  dragón: "dragon",
-  acero: "steel",
-  hada: "fairy"
-};
+const tipoTraducido = Object.entries(PokemonType).reduce((acc, [es, en]) => {
+  acc[es.toLowerCase()] = en;
+  return acc;
+}, {});
 
 // Lista de legendarios, puedes añadir más
 const legendarios = ['mewtwo', 'mew', 'articuno', 'zapdos', 'moltres'];
